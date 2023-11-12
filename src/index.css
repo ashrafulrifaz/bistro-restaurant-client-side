@@ -11,9 +11,13 @@ html, body {
 }
 
 .home_nav li a{
-    @apply font-bold text-sm
+    @apply font-bold text-sm text-white
 }
 
 .home_nav li .active {
     color: #EEFF25;
+}
+
+.thumbs {
+    text-align: center
 }
