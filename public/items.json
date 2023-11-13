@@ -1,0 +1,22 @@
+[
+    {
+        "name": "salads",
+        "image": "https://i.ibb.co/sPwBPVp/slide1.jpg"
+    },
+    {
+        "name": "soups",
+        "image": "https://i.ibb.co/kgmzJyF/slide3.jpg"
+    },
+    {
+        "name": "Pizzas",
+        "image": "https://i.ibb.co/pLfhH69/slide2.jpg"
+    },
+    {
+        "name": "deserts",
+        "image": "https://i.ibb.co/yW5y0G8/slide4.jpg"
+    },
+    {
+        "name": "burgers",
+        "image": "https://i.ibb.co/58mr5vZ/burger-item.jpg"
+    }
+]
