@@ -1,17 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import MenuCard from "./MenuCard";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/Provider";
 
 const Menu = () => {
-    const [menus, setMenus] = useState([])
-
-    useEffect(() => {
-        axios.get('menu.json')
-            .then(res => {
-                setMenus(res.data)
-            })
-    }, [])
+    const {menuItem} = useContext(AuthContext)
 
     return (
         <div className="py-10">
@@ -23,7 +16,7 @@ const Menu = () => {
             </div>
             <div className="grid grid-cols-2 gap-6 mt-5">
                 {
-                    menus && menus.map((menu, idx) => <MenuCard key={idx} menu={menu}></MenuCard>).slice(0, 6)
+                    menuItem && menuItem.map((menu, idx) => <MenuCard key={idx} menu={menu}></MenuCard>).slice(0, 6)
                 }
             </div>
             <div className="mt-10 text-center">
