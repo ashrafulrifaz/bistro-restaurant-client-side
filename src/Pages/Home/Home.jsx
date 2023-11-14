@@ -4,6 +4,7 @@ import Info from "../../Components/HomeComp/Info/Info";
 import Menu from "../../Components/HomeComp/Menu/Menu";
 import Number from "../../Components/HomeComp/Number/Number";
 import Recomendation from "../../Components/HomeComp/Recomendation/Recomendation";
+import FeaturedItem from "../../Components/HomeComp/SingleItem/FeaturedItem";
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
                 <Number></Number>
                 <Recomendation></Recomendation>
             </div>
+            <FeaturedItem></FeaturedItem>
         </div>
     );
 };
