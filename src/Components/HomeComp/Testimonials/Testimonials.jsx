@@ -39,8 +39,7 @@ const Testimonials = () => {
                         <TestimonialCard review={review}></TestimonialCard>
                     </SwiperSlide>
                     )
-                }
-                
+                }                
             </Swiper>
         </div>
     );
