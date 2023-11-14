@@ -4,13 +4,14 @@ import Info from "../../Components/HomeComp/Info/Info";
 import Menu from "../../Components/HomeComp/Menu/Menu";
 import Number from "../../Components/HomeComp/Number/Number";
 import Recomendation from "../../Components/HomeComp/Recomendation/Recomendation";
-import FeaturedItem from "../../Components/HomeComp/SingleItem/FeaturedItem";
+import FeaturedItem from "../../Components/HomeComp/FeaturedItem/FeaturedItem";
+import Testimonials from "../../Components/HomeComp/Testimonials/Testimonials";
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <div className="max-w-[85%] xl:max-w-[1100px] mx-auto">
+            <div className="max-w-[85%] xl:max-w-[1000px] mx-auto">
                 <Foods></Foods>
                 <Info></Info>
                 <Menu></Menu>
@@ -18,6 +19,9 @@ const Home = () => {
                 <Recomendation></Recomendation>
             </div>
             <FeaturedItem></FeaturedItem>
+            <div className="max-w-[85%] xl:max-w-[1000px] mx-auto">
+                <Testimonials></Testimonials>
+            </div>
         </div>
     );
 };
