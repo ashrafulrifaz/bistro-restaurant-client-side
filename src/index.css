@@ -21,3 +21,8 @@ html, body {
 .thumbs {
     text-align: center
 }
+
+.react-tabs__tab--selected {
+    border-color: #BB8506!important;
+    color: #BB8506!important;
+}

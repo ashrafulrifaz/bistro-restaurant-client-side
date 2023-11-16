@@ -1,4 +1,4 @@
-import SharedBanner from "../../Components/SharedBanner/SharedBanner";
+import SharedBanner from "../../Components/SharedComponents/SharedBanner";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/Provider";
 import MenuCard from "../../Components/HomeComp/Menu/MenuCard";
