@@ -26,8 +26,8 @@ const Header = () => {
                             <NavLink to="/shop">out shop</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/sign-out">
-                                <div className="flex gap-1 items-center">sign out <img src={defaultUser} alt="user" className="w-[26px] h-[26px]" /></div>
+                            <NavLink to="/sign-in">
+                                <div className="flex gap-1 items-center">sign In <img src={defaultUser} alt="user" className="w-[26px] h-[26px]" /></div>
                             </NavLink>
                         </li>
                     </ul>

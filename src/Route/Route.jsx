@@ -4,6 +4,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Menu from "../Pages/Menu/Menu";
 import Shop from "../Pages/Shop/Shop";
+import SignIn from "../Pages/SignIn/SignIn";
 
 const Route = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const Route = createBrowserRouter([
             {
                 path: 'shop/:category',
                 element: <Shop></Shop>
+            },
+            {
+                path: '/sign-in',
+                element: <SignIn></SignIn>
             }
         ]
     }
