@@ -36,7 +36,7 @@ const Menu = () => {
                     }
                 </div>
                 <div className="text-center">
-                    <Link to="/menu">
+                    <Link to={`/shop`}>
                         <button className='py-1.5 px-5 mt-5 rounded-md border-b-2 border-black hover:scale-95 transition-all uppercase'>order your favourite food</button>
                     </Link>
                 </div>
@@ -51,7 +51,7 @@ const Menu = () => {
                     }
                 </div>
                 <div className="text-center">
-                    <Link to="/menu">
+                    <Link to='/shop/dessert'>
                         <button className='py-1.5 px-5 mt-5 rounded-md border-b-2 border-black hover:scale-95 transition-all uppercase'>order your favourite food</button>
                     </Link>
                 </div>
@@ -66,7 +66,7 @@ const Menu = () => {
                     }
                 </div>
                 <div className="text-center">
-                    <Link to="/menu">
+                    <Link to='/shop/pizza'>
                         <button className='py-1.5 px-5 mt-5 rounded-md border-b-2 border-black hover:scale-95 transition-all uppercase'>order your favourite food</button>
                     </Link>
                 </div>
@@ -81,7 +81,7 @@ const Menu = () => {
                     }
                 </div>
                 <div className="text-center">
-                    <Link to="/menu">
+                    <Link to='/shop/salad'>
                         <button className='py-1.5 px-5 mt-5 rounded-md border-b-2 border-black hover:scale-95 transition-all uppercase'>order your favourite food</button>
                     </Link>
                 </div>
@@ -96,7 +96,7 @@ const Menu = () => {
                     }
                 </div>
                 <div className="text-center">
-                    <Link to="/menu">
+                    <Link to='/shop/soup'>
                         <button className='py-1.5 px-5 mt-5 rounded-md border-b-2 border-black hover:scale-95 transition-all uppercase'>order your favourite food</button>
                     </Link>
                 </div>

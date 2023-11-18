@@ -8,7 +8,7 @@ const Provider = ({children}) => {
     const [menuItem, setMenuItem] = useState([])
 
     useEffect(() => {
-        axios.get('menu.json')
+        axios.get('http://localhost:5000/menu')
             .then(res => {
                 setMenuItem(res.data)
             })
