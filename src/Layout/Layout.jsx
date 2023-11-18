@@ -4,14 +4,14 @@ import Footer from "../Components/Footer/Footer";
 
 const Layout = () => {
     const location = useLocation()
-    const disableHeaderFooter = location.pathname.includes('sign-in' || 'sign-up')
-    console.log(disableHeaderFooter);
+    const disableHeaderFooter = location.pathname.includes('sign-in')
+    const disableFooterHeader = location.pathname.includes('sign-up')
 
     return (
         <div>
-            {disableHeaderFooter || <Header></Header>}
+            {disableHeaderFooter || disableFooterHeader || <Header></Header>}
             <Outlet></Outlet>
-            {disableHeaderFooter || <Footer></Footer>}
+            {disableHeaderFooter || disableFooterHeader || <Footer></Footer>}
         </div>
     );
 };
