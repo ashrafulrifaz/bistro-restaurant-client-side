@@ -1,10 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import defaultUser from '../../../assets/icon/user.png'
+import cartImage from '../../../assets/icon/shopping-cart.png'
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/Provider";
+import useCart from "../../Hooks/UseCart";
 
 const Header = () => {
     const {user, signOutUser} = useContext(AuthContext)
+    const [cartData, isPending] = useCart()
 
     return (
         <div className="py-4 uppercase fixed z-10 w-full bg-[#0000005c]">
@@ -27,7 +30,13 @@ const Header = () => {
                             <NavLink to="/menu">our menu</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/shop">out shop</NavLink>
+                            <NavLink to="/shop">our shop</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/dashboard/my-cart" className="flex relative">
+                                <img src={cartImage} className="w-6" alt="" />
+                                <div className="badge badge-xs rounded-full absolute right-0 bottom-0">{user ? (isPending ? <span className="loading loading-spinner loading-xs"></span> : cartData?.length) : 0}</div>
+                            </NavLink>
                         </li>
                         <li>
                             {

@@ -10,9 +10,12 @@ import desertImage from '../../../assets/menu/dessert-bg.jpeg'
 import pizzaImage from '../../../assets/menu/pizza-bg.jpg'
 import saladImage from '../../../assets/menu/salad-bg.jpg'
 import soupImage from '../../../assets/menu/soup-bg.jpg'
+import useUserData from "../../Hooks/useUserData";
 
 const Menu = () => {
     const {menuItem} = useContext(AuthContext)
+    const user = useUserData()
+    console.log(user);
 
     // category items
     const dessertItem = menuItem.filter(item => item.category === 'dessert')

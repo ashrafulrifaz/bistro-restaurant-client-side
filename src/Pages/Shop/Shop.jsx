@@ -19,7 +19,6 @@ const Shop = () => {
     const {category} = useParams()
     const currentCategory = categories.indexOf(category)
     const [tabIndex, setTabIndex] = useState(currentCategory < 0 ? 0 : currentCategory)
-    console.log(tabIndex);
 
     return (
         <div>

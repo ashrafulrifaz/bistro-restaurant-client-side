@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Footer = () => {
     let currentYear = new Date()
     currentYear = currentYear.getFullYear()
-    console.log(currentYear);
 
     return (
         <div>

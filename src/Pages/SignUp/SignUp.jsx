@@ -5,9 +5,12 @@ import verifyIcon from '../../../assets/icon/check-circle.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/Provider';
 import { useForm } from 'react-hook-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const SignUp = () => {
-    const {createUser} = useContext(AuthContext)
+    const {createUser, googleLogin} = useContext(AuthContext)
     const captchaRef = useRef(null)
     const [isCaptchaVerified, setIsCaptchaVerified] = useState(true)
     const navigate = useNavigate()
@@ -31,8 +34,16 @@ const SignUp = () => {
     const onSubmit = (data) => {
         createUser(data.email, data.password)
         .then(() => {
+            
             navigate('/')
         })
+        .catch(error => console.log(error.message))
+    }
+
+    const handleGoogleLogin = () => {
+        const provider = new GoogleAuthProvider()
+        googleLogin(provider)
+        .then(() => navigate('/'))
         .catch(error => console.log(error.message))
     }
  
@@ -72,6 +83,17 @@ const SignUp = () => {
                         <button disabled={isCaptchaVerified} className='text-white bg-[#d9b782] font-semibold py-2.5 rounded w-full'>Sign Up</button>
                         <div>
                             <h3 className='text-center mt-2 text-[#D1A054]'>Already have an account <Link to="/sign-in" className='text-[#D1A054] font-semibold'>Sign in</Link></h3>
+                        </div>
+                        <div className="flex gap-6 justify-center">
+                            <div className="border border-[#444] rounded-full w-7 h-7 p-3 flex items-center justify-center">
+                                <FontAwesomeIcon icon={faFacebookF} className='text-[#444] cursor-pointer' />
+                            </div>
+                            <div className="border border-[#444] rounded-full w-7 h-7 p-3 flex items-center justify-center">
+                                <FontAwesomeIcon onClick={handleGoogleLogin} icon={faGoogle} className='text-[#444] cursor-pointer' />
+                            </div>
+                            <div className="border border-[#444] rounded-full w-7 h-7 p-3 flex items-center justify-center">
+                                <FontAwesomeIcon icon={faGithub} className='text-[#444] cursor-pointer' />
+                            </div>
                         </div>
                     </form>
                 </div>
