@@ -4,7 +4,7 @@ import useUserData from "./useUserData";
 const useCart = () => {
     const user = useUserData()
     const { refetch, isPending, data: cartData } = useQuery({
-        queryKey: ['repoData'],
+        queryKey: ['cart'],
         queryFn: () =>
         fetch(`http://localhost:5000/cart?email=${user?.email}`)
         .then(

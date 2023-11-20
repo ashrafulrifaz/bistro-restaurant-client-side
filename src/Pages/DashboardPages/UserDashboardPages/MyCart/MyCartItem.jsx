@@ -1,10 +1,11 @@
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 
 const MyCartItem = ({item, id, refetch}) => {
     const {_id, image, price, name} = item
+    const axiosPublic = useAxiosPublic()
 
     const handleDeleteItem = () => {
         Swal.fire({
@@ -19,7 +20,7 @@ const MyCartItem = ({item, id, refetch}) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/cart/${_id}`)
+                axiosPublic.delete(`/cart/${_id}`)
                     .then(res => {
                         if(res.data.deletedCount){
                             refetch()

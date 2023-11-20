@@ -2,18 +2,22 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { useContext, useEffect, useRef, useState } from 'react';
 import signInImage from '../../../assets/others/authentication2.png'
 import verifyIcon from '../../../assets/icon/check-circle.png'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/Provider';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { GoogleAuthProvider } from 'firebase/auth';
+import Swal from 'sweetalert2';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const SignUp = () => {
     const {createUser, googleLogin} = useContext(AuthContext)
     const captchaRef = useRef(null)
     const [isCaptchaVerified, setIsCaptchaVerified] = useState(true)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
+    const location = useLocation()
 
     const { register, handleSubmit, formState: { errors },} = useForm()
 
@@ -32,10 +36,29 @@ const SignUp = () => {
     }
 
     const onSubmit = (data) => {
+        const userInfo = {
+            email: data.email, 
+            password: data.password,
+            name: data.name
+        }
         createUser(data.email, data.password)
-        .then(() => {
-            
-            navigate('/')
+        .then(() => { 
+            axiosPublic.post('/users', userInfo)
+                .then(res => {
+                    if(res.data.insertedId){
+                        Swal.fire({
+                            position: "top-end",
+                            title: "Sign up successfully",
+                            imageUrl: "https://i.ibb.co/P96LKHm/right-decision.gif",
+                            imageWidth: 100,
+                            imageHeight: 100,
+                            imageAlt: "good",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                        navigate(location.state ? location.state : '/')
+                    }
+                })
         })
         .catch(error => console.log(error.message))
     }
@@ -43,7 +66,26 @@ const SignUp = () => {
     const handleGoogleLogin = () => {
         const provider = new GoogleAuthProvider()
         googleLogin(provider)
-        .then(() => navigate('/'))
+        .then(result => {
+            const userInfo = {
+                email: result?.user?.email, 
+                name: result?.user?.displayName
+            }          
+            axiosPublic.post('/users', userInfo)
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    title: "Sign up successfully",
+                    imageUrl: "https://i.ibb.co/P96LKHm/right-decision.gif",
+                    imageWidth: 100,
+                    imageHeight: 100,
+                    imageAlt: "good",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                navigate(location.state ? location.state : '/')
+            })
+        })
         .catch(error => console.log(error.message))
     }
  
@@ -57,9 +99,9 @@ const SignUp = () => {
                     <h2 className="text-center text-2xl font-semibold">Create an Account</h2>
                     <form className='mt-5 space-y-3' onSubmit={handleSubmit(onSubmit)}>
                         <div className='space-y-2'>
-                            <label htmlFor="" className='block font-semibold'>Image</label>
-                            <input {...register("image", { required: true })} type="text" placeholder='Enter your Image url' className='focus:outline-none border border-[#D0D0D0] py-2.5 px-5 w-full rounded'/>
-                            {errors.image && <span className='text-red-500'>Image is required</span>}
+                            <label htmlFor="" className='block font-semibold'>Name</label>
+                            <input {...register("name", { required: true })} type="text" placeholder='Enter your name' className='focus:outline-none border border-[#D0D0D0] py-2.5 px-5 w-full rounded'/>
+                            {errors.image && <span className='text-red-500'>Name is required</span>}
                         </div>
                         <div className='space-y-2'>
                             <label htmlFor="" className='block font-semibold'>Email</label>

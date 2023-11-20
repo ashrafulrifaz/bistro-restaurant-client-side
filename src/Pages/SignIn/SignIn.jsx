@@ -2,12 +2,14 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { useContext, useEffect, useRef, useState } from 'react';
 import signInImage from '../../../assets/others/authentication2.png'
 import verifyIcon from '../../../assets/icon/check-circle.png'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/Provider';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { GoogleAuthProvider } from 'firebase/auth';
+import Swal from 'sweetalert2';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const SignIn = () => {
     const captchaRef = useRef(null)
@@ -15,6 +17,8 @@ const SignIn = () => {
     const {signInUser, googleLogin} = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors },} = useForm()
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
+    const location = useLocation()
 
     useEffect(() => {
         loadCaptchaEnginge(6)
@@ -32,8 +36,18 @@ const SignIn = () => {
 
     const onSubmit = (data) => {
         signInUser(data.email, data.password)
-        .then(() => {
-            navigate('/')
+        .then(() => {           
+            Swal.fire({
+                position: "top-end",
+                title: "Sign in successfully",
+                imageUrl: "https://i.ibb.co/P96LKHm/right-decision.gif",
+                imageWidth: 100,
+                imageHeight: 100,
+                imageAlt: "good",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            navigate(location.state ? location.state : '/')
         })
         .catch(error => {
             console.log(error.message);
@@ -43,7 +57,27 @@ const SignIn = () => {
     const handleGoogleLogin = () => {
         const provider = new GoogleAuthProvider()
         googleLogin(provider)
-        .then(() => navigate('/'))
+        .then(result => {
+            const userInfo = {
+                email: result?.user?.email, 
+                name: result?.user?.displayName
+            }          
+            axiosPublic.post('/users', userInfo)
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    title: "Sign in successfully",
+                    imageUrl: "https://i.ibb.co/P96LKHm/right-decision.gif",
+                    imageWidth: 100,
+                    imageHeight: 100,
+                    imageAlt: "good",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                navigate('/')
+                navigate(location.state ? location.state : '/')
+            })
+        })
         .catch(error => console.log(error.message))
     }
 

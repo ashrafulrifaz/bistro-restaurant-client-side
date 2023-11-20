@@ -1,9 +1,12 @@
 import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
-import { faBagShopping, faBars, faCalendarCheck, faCalendarDays, faEnvelope, faHouse, faShoppingCart, faWallet } from "@fortawesome/free-solid-svg-icons";
+import { faBagShopping, faBars, faBook, faCalendarCheck, faCalendarDays, faEnvelope, faHouse, faList, faShoppingCart, faUserGroup, faUtensils, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+    const isAdmin = useState(true)
+
     return (
         <div className="grid grid-cols-5 min-h-screen">
             <div className="p-7 h-full bg-[#D1A054] text-[#151515]">
@@ -11,6 +14,41 @@ const Dashboard = () => {
                     <h2 className="font-main text-2xl font-extrabold leading-none">bistro boss <br/> <span className="text-xl font-bold tracking-[3px]">restaurant</span></h2>
                 </Link>
                 <ul className="mt-10 space-y-4">
+                    { isAdmin ? 
+                    <>
+                    <li>
+                        <NavLink to="/dashboard/home" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
+                            <FontAwesomeIcon icon={faHouse}/>
+                            <span className="uppercase font-main font-semibold">Admin Home</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/add-items" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
+                            <FontAwesomeIcon icon={faUtensils}/>
+                            <span className="uppercase font-main font-semibold">add items</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manage-items" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
+                            <FontAwesomeIcon icon={faList}/>
+                            <span className="uppercase font-main font-semibold">manage items</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/manage-bookings" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
+                            <FontAwesomeIcon icon={faBook}/>
+                            <span className="uppercase font-main font-semibold">manage bookings</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/all-users" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
+                            <FontAwesomeIcon icon={faUserGroup}/>
+                            <span className="uppercase font-main font-semibold">all users</span>
+                        </NavLink>
+                    </li>
+                    </>
+                    :
+                    <>
                     <li>
                         <NavLink to="/dashboard/home" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
                             <FontAwesomeIcon icon={faHouse}/>
@@ -47,6 +85,8 @@ const Dashboard = () => {
                             <span className="uppercase font-main font-semibold">my booking</span>
                         </NavLink>
                     </li>
+                    </>}
+
                     <hr/>
                     <li>
                         <NavLink to="/" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
