@@ -9,8 +9,10 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Cart from "../Pages/Cart/Cart";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import MyCart from "../Pages/DashboardPages/UserDashboardPages/MyCart/MyCart";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../Pages/DashboardPages/AdminDashboardPages/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
+import AddItems from "../Pages/DashboardPages/AdminDashboardPages/AddItems/AddItems";
 
 const Route = createBrowserRouter([
     {
@@ -46,7 +48,7 @@ const Route = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute> <Dashboard></Dashboard> </PrivateRoute>,
+        element: <AdminRoute> <Dashboard></Dashboard> </AdminRoute>,
         children: [
             // users
             {
@@ -61,6 +63,10 @@ const Route = createBrowserRouter([
             {
                 path: 'all-users',
                 element: <AllUsers></AllUsers>
+            },
+            {
+                path: 'add-item',
+                element: <AddItems></AddItems>
             }
         ]
     }

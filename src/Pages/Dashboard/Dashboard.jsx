@@ -1,11 +1,12 @@
 import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import { faBagShopping, faBars, faBook, faCalendarCheck, faCalendarDays, faEnvelope, faHouse, faList, faShoppingCart, faUserGroup, faUtensils, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Dashboard = () => {
-    const isAdmin = useState(true)
+    const isAdmin = useAdmin()
+    console.log(isAdmin);
 
     return (
         <div className="grid grid-cols-5 min-h-screen">

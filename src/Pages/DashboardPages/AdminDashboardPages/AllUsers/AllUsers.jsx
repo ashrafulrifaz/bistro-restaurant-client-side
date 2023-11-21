@@ -1,13 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import AllusersCard from "./AllusersCard";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const AllUsers = () => {
-    const { isPending, data, refetch } = useQuery({
-        queryKey: ['user'],
-        queryFn: () =>
-          fetch('http://localhost:5000/users')
-          .then((res) => res.json()),
-      })
+    const axiosSecure = useAxiosSecure()
+
+    const { isPending, data: users = [], refetch } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => { 
+            const res = await axiosSecure.get('/users')
+            return res.data
+        }
+    })
+    console.log(users);
 
     return (
         <div className="py-6 px-20 bg-[#F6F6F6] min-h-screen">
@@ -19,7 +24,7 @@ const AllUsers = () => {
             </div>
             <div className="bg-white mt-10 p-10">
                 <div className="flex justify-between items-center">
-                    <h2 className="uppercase font-main font-bold text-2xl">total users: {isPending ? <span className="loading loading-spinner loading-xs"></span> : data?.length}</h2>
+                    <h2 className="uppercase font-main font-bold text-2xl">total users: {isPending ? <span className="loading loading-spinner loading-xs"></span> : users?.length}</h2>
                 </div>
                 <div className="overflow-x-auto mt-8">
                     <table className="table">
@@ -34,7 +39,7 @@ const AllUsers = () => {
                         </thead>
                         <tbody>
                             {
-                                data?.map((item, idx) => <AllusersCard key={idx} item={item} id={idx} refetch={refetch}></AllusersCard>)
+                                users && users.map((item, idx) => <AllusersCard key={idx} item={item} id={idx} refetch={refetch}></AllusersCard>)
                             }
                         </tbody>
                     </table>
