@@ -6,17 +6,11 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 export const AuthContext = createContext(null)
 
 const Provider = ({children}) => {
-    const [menuItem, setMenuItem] = useState([])
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const axiosPublic = useAxiosPublic()
 
     useEffect(() => {
-        axiosPublic.get('/menu')
-            .then(res => {
-                setMenuItem(res.data)
-            })
-
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             setLoading(false)
@@ -59,7 +53,7 @@ const Provider = ({children}) => {
     }
 
     const info = {
-        menuItem, user, createUser, signOutUser, loading, signInUser, googleLogin
+        user, createUser, signOutUser, loading, signInUser, googleLogin
     }
 
     return (

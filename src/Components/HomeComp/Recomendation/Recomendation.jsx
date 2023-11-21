@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../Provider/Provider";
 import RecommendCard from "./RecommendCard";
+import useMenu from "../../../Hooks/useMenu";
 
 const Recomendation = () => {
-    const {menuItem} = useContext(AuthContext)
+    const [menuItem] = useMenu()
 
     return (
         <div className="py-10 text-center">

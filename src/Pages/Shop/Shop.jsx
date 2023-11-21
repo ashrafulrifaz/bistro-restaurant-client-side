@@ -2,13 +2,14 @@ import SharedBanner from "../../Components/SharedComponents/SharedBanner";
 import shopBannerBg from '../../../assets/shop/banner2.jpg'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import { AuthContext } from "../../Provider/Provider";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import TabContent from "../../Components/SharedComponents/TabContent/TabContent";
 import { useParams } from "react-router-dom";
+import useMenu from "../../Hooks/useMenu";
 
 const Shop = () => {
-    const {menuItem} = useContext(AuthContext)
+    const [menuItem] = useMenu()
+    console.log(menuItem);
     const saladItem = menuItem.filter(item => item.category === 'salad')
     const pizzaItem = menuItem.filter(item => item.category === 'pizza')
     const soupItem = menuItem.filter(item => item.category === 'soup')

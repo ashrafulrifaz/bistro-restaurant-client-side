@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import useMenu from "../../../Hooks/useMenu";
 import MenuCard from "./MenuCard";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../Provider/Provider";
 
 const Menu = () => {
-    const {menuItem} = useContext(AuthContext)
+    const [menuItem] = useMenu()
 
     return (
         <div className="py-10">

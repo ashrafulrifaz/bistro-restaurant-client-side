@@ -1,8 +1,7 @@
 import SharedBanner from "../../Components/SharedComponents/SharedBanner";
-import { useContext } from "react";
-import { AuthContext } from "../../Provider/Provider";
 import MenuCard from "../../Components/HomeComp/Menu/MenuCard";
 import { Link } from "react-router-dom";
+import useMenu from "../../Hooks/useMenu";
 
 // images
 import bgImage from '../../../assets/menu/banner3.jpg'
@@ -10,12 +9,9 @@ import desertImage from '../../../assets/menu/dessert-bg.jpeg'
 import pizzaImage from '../../../assets/menu/pizza-bg.jpg'
 import saladImage from '../../../assets/menu/salad-bg.jpg'
 import soupImage from '../../../assets/menu/soup-bg.jpg'
-import useUserData from "../../Hooks/useUserData";
 
 const Menu = () => {
-    const {menuItem} = useContext(AuthContext)
-    const user = useUserData()
-    console.log(user);
+    const [menuItem] = useMenu()
 
     // category items
     const dessertItem = menuItem.filter(item => item.category === 'dessert')
