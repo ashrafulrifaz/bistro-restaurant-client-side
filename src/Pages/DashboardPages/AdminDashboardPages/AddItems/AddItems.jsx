@@ -8,14 +8,12 @@ import { useState } from "react";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_API_KEY
 const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
-console.log(image_hosting_url);
 
 const AddItems = () => {
     const { register, handleSubmit, reset } = useForm()
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
     const [isLoadingPost, setIsLoadingPost] = useState(false);
-    console.log(isLoadingPost);
 
     const onSubmit = async (data) => {
         setIsLoadingPost(true)
@@ -28,7 +26,7 @@ const AddItems = () => {
         if(res.data.success){
             const newItem = {
                 name: data.name,
-                recipe: data.recipe,
+                recipe: data.details,
                 image: res.data.data.display_url,
                 category: data.category,
                 price: parseFloat(data.price)

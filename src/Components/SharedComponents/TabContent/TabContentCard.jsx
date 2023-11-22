@@ -5,14 +5,14 @@ import useUserData from "../../../Hooks/useUserData";
 
 
 const TabContentCard = ({item}) => {
-    const {name, image, recipe, price, category} = item
+    const {name, image, recipe, price, category, menu_id} = item
     const user = useUserData()    
     const [, , refetch] = useCart()
     
     const handleAddToCart = () => {
         if(user){
             const cartDetails = {
-                email: user?.email, name, image, price, category
+                email: user?.email, name, image, price, category, menu_id
             }
             axios.post('http://localhost:5000/cart', cartDetails)
                 .then(res => {

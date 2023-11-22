@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useCart from "../../../../Hooks/UseCart";
 import MyCartItem from "./MyCartItem";
 
@@ -17,25 +18,33 @@ const MyCart = () => {
                 <div className="flex justify-between items-center">
                     <h2 className="uppercase font-main font-bold text-2xl">total orders: {isPending ? <span className="loading loading-spinner loading-xs"></span> : cartData?.length}</h2>
                     <h2 className="uppercase font-main font-bold text-2xl">total price: ${totalPrice}</h2>
-                    <button className="uppercase font-main font-bold text-white bg-[#D1A054] py-2 px-3 rounded-lg">pay</button>
+                    { cartData?.length > 0 && 
+                        <Link to="/dashboard/payment">
+                            <button className="uppercase font-main font-bold text-white bg-[#D1A054] py-2 px-3 rounded-lg">pay</button>
+                        </Link> 
+                    }
                 </div>
                 <div className="overflow-x-auto mt-8">
-                    <table className="table">
-                        <thead className="bg-[#D1A054] text-white uppercase">
-                            <tr>
-                                <th>#</th>
-                                <th>Item Image</th>
-                                <th>item name</th>
-                                <th>price</th>
-                                <th>action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                cartData?.map((item, idx) => <MyCartItem key={idx} item={item} id={idx} refetch={refetch}></MyCartItem>)
-                            }
-                        </tbody>
-                    </table>
+                    {
+                        cartData?.length > 0 ?
+                        <table className="table">
+                            <thead className="bg-[#D1A054] text-white uppercase">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Item Image</th>
+                                    <th>item name</th>
+                                    <th>price</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    cartData?.map((item, idx) => <MyCartItem key={idx} item={item} id={idx} refetch={refetch}></MyCartItem>)
+                                }
+                            </tbody>
+                        </table> : 
+                        <p className="text-xl font-semibold text-center">You don{"'"}t have any item</p>
+                    }
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ItemsCard = ({item, id, refetch}) => {
     const {_id, name, image, price} = item
@@ -52,9 +53,9 @@ const ItemsCard = ({item, id, refetch}) => {
                 <h3 className="font-medium text-base">${price}</h3>
             </th>
             <th>
-                <div className="flex justify-center items-center">
+                <Link to={`/dashboard/update/${_id}`} className="flex justify-center items-center">
                     <FontAwesomeIcon icon={faPenToSquare} className="text-lg bg-[#D1A054] text-white p-2.5 rounded-md cursor-pointer" />
-                </div>
+                </Link>
             </th>
             <th>
                 <div className="flex justify-center items-center">

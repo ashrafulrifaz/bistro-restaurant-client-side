@@ -17,7 +17,7 @@ const Dashboard = () => {
                     { isAdmin ? 
                     <div className="space-y-4">
                         <li>
-                            <NavLink to="/dashboard/home" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
+                            <NavLink to="/dashboard/admin-home" className="flex gap-2 cursor-pointer hover:text-white transition-colors">
                                 <FontAwesomeIcon icon={faHouse}/>
                                 <span className="uppercase font-main font-semibold">Admin Home</span>
                             </NavLink>
